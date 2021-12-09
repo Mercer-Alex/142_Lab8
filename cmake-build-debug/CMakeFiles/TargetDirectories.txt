@@ -1,0 +1,3 @@
+C:/Users/amerc/CLionProjects/142_Lab8/cmake-build-debug/CMakeFiles/142_Lab8.dir
+C:/Users/amerc/CLionProjects/142_Lab8/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/amerc/CLionProjects/142_Lab8/cmake-build-debug/CMakeFiles/rebuild_cache.dir
