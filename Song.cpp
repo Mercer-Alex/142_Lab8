@@ -33,3 +33,4 @@ std::string Song::ToString() {
     out << songTitle << ": \"" << firstLine << "\", " << timesPlayed << " play(s).";
     return out.str();
 }
+

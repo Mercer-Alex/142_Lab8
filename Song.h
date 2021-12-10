@@ -17,7 +17,7 @@ public:
     void SetTitle(std::string songTitle);
     std::string GetSongTitle();
     void AddFirstLine(std::string songFirstLine);
-   std::string GetFirstLine();
+    std::string GetFirstLine();
     void PlaySong();
     int GetTimesPlayed();
     std::string ToString();

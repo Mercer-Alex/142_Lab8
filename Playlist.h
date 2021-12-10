@@ -13,10 +13,12 @@ private:
     std::vector<Song*> playlist;
 public:
     Playlist(std::string playlistName = "none");
-    void AddSong(Song*);
+    void AddSong(Song* newSong);
     void PlayPlaylist();
     std::string GetPlaylistName();
     std::string PlaylistString();
+    void ListSong();
+    void DeleteSong(int songIndex);
 };
 
 

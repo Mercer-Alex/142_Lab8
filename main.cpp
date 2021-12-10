@@ -22,7 +22,7 @@ int GetUserInt(const std::string& prompt);
 int main() {
     std::cout << "Welcome to the Firstline Player!  Enter options to see menu options." << std::endl << std::endl;
 
-    std::vector<Playlist*> userPlaylist;
+    std::vector<Playlist> userPlaylist;
     std::vector<Song*> userSongs;
 
 
@@ -47,6 +47,7 @@ int main() {
 
                 songName = GetUserString("Song Name: ");
             }
+            std::cout << std::endl;
         }
         else if (userMenuChoice == "list") {
             for (size_t i = 0; i < userSongs.size(); ++i) {
@@ -57,33 +58,84 @@ int main() {
         else if (userMenuChoice == "addp") {
             std::string playlistName = "none";
             playlistName = GetUserString("Playlist name: ");
-            userPlaylist.push_back(new Playlist(playlistName));
+            userPlaylist.push_back(Playlist(playlistName));
+            std::cout << std::endl;
         }
         else if (userMenuChoice == "addsp") {
+            int playlistIndex = 0;
+            int songIndex = 0;
+
+            for (size_t i = 0; i < userPlaylist.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userPlaylist.at(i).PlaylistString();
+                std::cout << std::endl;
+            }
+            std::cout << "Pick a playlist index number: ";
+            std::cin >> playlistIndex;
+            std::cin.ignore();
+
             for (size_t i = 0; i < userSongs.size(); ++i) {
                 std::cout << i << ": ";
                 std::cout << userSongs.at(i)->GetSongTitle() << std::endl;
             }
-            std::cout << std::endl;
+            std::cout << "Pick a song index number: ";
+            std::cin >> songIndex;
+            std::cin.ignore();
+
+            userPlaylist.at(playlistIndex).AddSong(userSongs.at(songIndex));
         }
         else if (userMenuChoice == "listp") {
             for (size_t i = 0; i < userPlaylist.size(); ++i) {
                 std::cout << i << ": ";
-                std::cout << userPlaylist.at(i)->PlaylistString();
+                std::cout << userPlaylist.at(i).PlaylistString();
                 std::cout << std::endl;
             }
             std::cout << std::endl;
         }
         else if (userMenuChoice == "play") {
-            //TODO: Implement this menu option
+            int playlistIndex = 0;
+
+            std::cout << std::endl << "Pick a playlist index number: ";
+            std::cin >> playlistIndex;
+            std::cin.ignore();
+
+            userPlaylist.at(playlistIndex).PlayPlaylist();
         }
         else if (userMenuChoice == "remp") {
-            //TODO: Implement this menu option
+            int playlistIndex = 0;
+            for (size_t i = 0; i < userPlaylist.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userPlaylist.at(i).PlaylistString();
+                std::cout << std::endl;
+            }
+            std::cout << "Pick a playlist index number to remove: ";
+            std::cin >> playlistIndex;
+            std::cin.ignore();
+
+            userPlaylist.erase(userPlaylist.begin() + playlistIndex);
         }
         else if (userMenuChoice == "remsp") {
-            //TODO: Implement this menu option
+            int playlistIndex = 0;
+            int songIndex = 0;
+            for (size_t i = 0; i < userPlaylist.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userPlaylist.at(i).PlaylistString();
+                std::cout << std::endl;
+            }
+            std::cout << "Pick a playlist index number: ";
+            std::cin >> playlistIndex;
+            std::cin.ignore();
+
+            userPlaylist.at(playlistIndex).ListSong();
+            std::cout << "Pick a song index number to remove: ";
+            std::cin >> songIndex;
+            std::cin.ignore();
+
+            userPlaylist.at(playlistIndex).DeleteSong(songIndex);
         }
         else if (userMenuChoice == "remsl") {
+
+
             //TODO: Implement this menu option
         }
         else if (userMenuChoice == "options") {
@@ -141,4 +193,5 @@ int GetUserInt(const std::string& prompt) {
     std::cout << std::endl;
     return userAnswer;
 }
+
 
