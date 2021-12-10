@@ -20,9 +20,6 @@ void Playlist::PlayPlaylist() {
     }
     std::cout << std::endl;
 }
-std::string Playlist::GetPlaylistName() {
-    return playlistName;
-}
 std::string Playlist::PlaylistString() {
     std::stringstream out;
     out << playlistName;
@@ -35,4 +32,12 @@ void Playlist::ListSong() {
 }
 void Playlist::DeleteSong(int songIndex) {
     playlist.erase(playlist.begin() + songIndex);
+}
+void Playlist::DeleteSongByTitle(std::string songTitle) {
+    for (size_t i = 0; i < playlist.size(); ++i) {
+        if (playlist.at(i)->GetSongTitle() == songTitle) {
+            playlist.erase(playlist.begin() + i);
+            return;
+        }
+    }
 }

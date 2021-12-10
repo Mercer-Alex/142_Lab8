@@ -14,12 +14,9 @@ private:
     int timesPlayed;
 public:
     Song(std::string songTitle = "none", std::string firstLine = "none");
-    void SetTitle(std::string songTitle);
     std::string GetSongTitle();
-    void AddFirstLine(std::string songFirstLine);
     std::string GetFirstLine();
     void PlaySong();
-    int GetTimesPlayed();
     std::string ToString();
 };
 

@@ -1,30 +1,15 @@
-//A Note regarding 'using namespace std':
-// The author of this code prefers to not have the line 'using namespace std;'
-// Instead, you will see 'std::' in front of string, cout, and other identifiers
-// You could put 'using namespace std;' at the top of your code and not need 'std::' in front of these words,
-// but many people consider it better practice to not have 'using namespace std;'
-
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include "Playlist.h"
-#include "Song.h"
-
-
-// TODO: clean up memory when it is no longer used
-//  (you need to find the appropriate places in the code to do this)
 
 std::string GetUserString(const std::string& prompt);
-int GetUserInt(const std::string& prompt);
-
 
 int main() {
     std::cout << "Welcome to the Firstline Player!  Enter options to see menu options." << std::endl << std::endl;
 
     std::vector<Playlist> userPlaylist;
     std::vector<Song*> userSongs;
-
 
     std::string userMenuChoice = "none";
     bool continueMenuLoop = true;
@@ -95,6 +80,11 @@ int main() {
         else if (userMenuChoice == "play") {
             int playlistIndex = 0;
 
+            for (size_t i = 0; i < userPlaylist.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userPlaylist.at(i).PlaylistString();
+                std::cout << std::endl;
+            }
             std::cout << std::endl << "Pick a playlist index number: ";
             std::cin >> playlistIndex;
             std::cin.ignore();
@@ -134,9 +124,21 @@ int main() {
             userPlaylist.at(playlistIndex).DeleteSong(songIndex);
         }
         else if (userMenuChoice == "remsl") {
+            int songIndex = 0;
 
+            for (size_t i = 0; i < userSongs.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userSongs.at(i)->GetSongTitle() << std::endl;
+            }
+            std::cout << "Pick a song index number to remove: ";
+            std::cin >> songIndex;
+            std::cin.ignore();
 
-            //TODO: Implement this menu option
+            for (size_t i = 0; i < userPlaylist.size(); ++i) {
+                userPlaylist.at(i).DeleteSongByTitle(userSongs.at(songIndex)->GetSongTitle());
+            }
+            delete(userSongs.at(songIndex));
+            userSongs.erase(userSongs.begin() + songIndex);
         }
         else if (userMenuChoice == "options") {
             std::cout << "add      Adds a list of songs to the library" << std::endl
@@ -184,14 +186,3 @@ std::string GetUserString(const std::string& prompt) {
     std::cout << std::endl;
     return userAnswer;
 }
-int GetUserInt(const std::string& prompt) {
-    int userAnswer = 0;
-
-    std::cout << prompt;
-    std::cin >> userAnswer;
-    std::cin.ignore();
-    std::cout << std::endl;
-    return userAnswer;
-}
-
-

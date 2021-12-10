@@ -15,10 +15,10 @@ public:
     Playlist(std::string playlistName = "none");
     void AddSong(Song* newSong);
     void PlayPlaylist();
-    std::string GetPlaylistName();
     std::string PlaylistString();
     void ListSong();
     void DeleteSong(int songIndex);
+    void DeleteSongByTitle(std::string songTitle);
 };
 
 
