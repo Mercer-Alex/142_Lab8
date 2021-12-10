@@ -12,7 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/amerc/CLionProjects/142_Lab8/Song.cpp" "C:/Users/amerc/CLionProjects/142_Lab8/cmake-build-debug/CMakeFiles/142_Lab8.dir/Song.cpp.obj"
   "C:/Users/amerc/CLionProjects/142_Lab8/main.cpp" "C:/Users/amerc/CLionProjects/142_Lab8/cmake-build-debug/CMakeFiles/142_Lab8.dir/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

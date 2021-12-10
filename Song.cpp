@@ -3,13 +3,14 @@
 //
 #include "Song.h"
 #include <iostream>
+#include <sstream>
 
-Song::Song(std::string songTitle, std::string firstLine, int timesPlayed) {
+Song::Song(std::string songTitle, std::string firstLine) {
     this->songTitle = songTitle;
     this->firstLine = firstLine;
-    this->timesPlayed = timesPlayed;
+    this->timesPlayed =0;
 }
-void Song::AddSong(std::string songTitle) {
+void Song::SetTitle(std::string songTitle) {
     this->songTitle = songTitle;
 }
 std::string Song::GetSongTitle() {
@@ -21,15 +22,14 @@ void Song::AddFirstLine(std::string firstLine) {
 std::string Song::GetFirstLine() {
     return firstLine;
 }
-void Song::NumTimesPlayed(int timesPlayed) {
-    this->timesPlayed = timesPlayed;
+void Song::PlaySong() {
+    this->timesPlayed++;
 }
 int Song::GetTimesPlayed() {
     return timesPlayed;
 }
-void Song::ListSongs() {
-    for (unsigned int i = 0; i < songs.size(); ++i) {
-        std::cout << songTitle << " " << timesPlayed;
-    }
-
+std::string Song::ToString() {
+    std::stringstream out;
+    out << songTitle << ": \"" << firstLine << "\", " << timesPlayed << " play(s).";
+    return out.str();
 }

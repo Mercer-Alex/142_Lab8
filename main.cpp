@@ -22,8 +22,8 @@ int GetUserInt(const std::string& prompt);
 int main() {
     std::cout << "Welcome to the Firstline Player!  Enter options to see menu options." << std::endl << std::endl;
 
-    Playlist userPlaylist();
-    Song userSongs();
+    std::vector<Playlist*> userPlaylist;
+    std::vector<Song*> userSongs;
 
 
     std::string userMenuChoice = "none";
@@ -43,23 +43,36 @@ int main() {
             songName = GetUserString("Song Name: ");
             while (songName != DONE_KEYWORD) {
                 firstLine = GetUserString("Song's first line: ");
-
-                //TODO: Create a Song using `songName` and `firstLine` and add it to allSongs
+                userSongs.push_back(new Song(songName, firstLine));
 
                 songName = GetUserString("Song Name: ");
             }
         }
         else if (userMenuChoice == "list") {
-            //TODO: Implement this menu option
+            for (size_t i = 0; i < userSongs.size(); ++i) {
+                std::cout << userSongs.at(i)->ToString();
+                std::cout << std::endl;
+            }
         }
         else if (userMenuChoice == "addp") {
-            //TODO: Implement this menu option
+            std::string playlistName = "none";
+            playlistName = GetUserString("Playlist name: ");
+            userPlaylist.push_back(new Playlist(playlistName));
         }
         else if (userMenuChoice == "addsp") {
-            //TODO: Implement this menu option
+            for (size_t i = 0; i < userSongs.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userSongs.at(i)->GetSongTitle() << std::endl;
+            }
+            std::cout << std::endl;
         }
         else if (userMenuChoice == "listp") {
-            //TODO: Implement this menu option
+            for (size_t i = 0; i < userPlaylist.size(); ++i) {
+                std::cout << i << ": ";
+                std::cout << userPlaylist.at(i)->PlaylistString();
+                std::cout << std::endl;
+            }
+            std::cout << std::endl;
         }
         else if (userMenuChoice == "play") {
             //TODO: Implement this menu option
@@ -87,6 +100,9 @@ int main() {
                       << "quit     Quits the program" << std::endl << std::endl;
         }
         else if (userMenuChoice == "quit") {
+            for (size_t i = 0; i < userSongs.size(); ++i) {
+                delete(userSongs.at(i));
+            }
             std::cout << "Goodbye!" << std::endl;
             continueMenuLoop = false;
         }

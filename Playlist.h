@@ -9,10 +9,14 @@
 
 class Playlist {
 private:
+    std::string playlistName;
     std::vector<Song*> playlist;
 public:
-
-
+    Playlist(std::string playlistName = "none");
+    void AddSong(Song*);
+    void PlayPlaylist();
+    std::string GetPlaylistName();
+    std::string PlaylistString();
 };
 
 

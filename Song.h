@@ -12,16 +12,15 @@ private:
     std::string songTitle;
     std::string firstLine;
     int timesPlayed;
-    std::vector<Song*> songs;
 public:
-    Song(std::string songTitle = "none", std::string firstLine = "none", int timesPlayed = 0);
-    void AddSong(std::string songTitle);
+    Song(std::string songTitle = "none", std::string firstLine = "none");
+    void SetTitle(std::string songTitle);
     std::string GetSongTitle();
     void AddFirstLine(std::string songFirstLine);
    std::string GetFirstLine();
-    void NumTimesPlayed(int timesPlayed);
+    void PlaySong();
     int GetTimesPlayed();
-    void ListSongs();
+    std::string ToString();
 };
 
 
